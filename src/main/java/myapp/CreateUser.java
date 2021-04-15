@@ -10,12 +10,6 @@ public class CreateUser extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        UserService userService = UserServiceFactory.getUserService();
-
-        if (!userService.isUserLoggedIn()) {
-            response.sendRedirect("/login");
-            return;
-        }
 
         String firstName = getParameter(request, "firstName", "");
         String lastName = getParameter(request, "lastName", "");
