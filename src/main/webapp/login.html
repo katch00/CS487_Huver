@@ -12,11 +12,29 @@
   <body>
       <div class="page">
         <header>
-            <h1 class="pagetitle">H&#220;ver</h1>
+            <h1 class="pagetitle"><a href="index.html">H&#220;ver</a></h1>
             <nav class="navbar">
                 <ul>
+                    <li class="driverslink">Drivers</li>
                     <li class="loginlink"><a href="login.html">Log in</a></li>
                     <li class="signuplink"><a href="signup.html">Sign up</a></li>
                 </ul>
             </nav>
         </header>
+        <div class="body">
+            <h2 class="logtitle">Log In</h2>
+            <form class="login">
+                <input type="radio" id="Customer" name="role" value="Customer">
+                <label for="Customer">Customer</label><br>
+                <input type="radio" id="Driver" name="role" value="Driver">
+                <label for="Driver">Driver</label><br>
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username"><br>
+                <label for="pwd">Password:</label><br>
+                <input type="password" id="pwd" name="pwd">
+            </form>
+                            
+        </div>
+        </div>
+  </body>
+</html>
