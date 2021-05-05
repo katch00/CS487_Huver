@@ -22,19 +22,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.appengine.repackaged.com.google.protobuf.Timestamp;
-import com.google.cloud.datastore.Datastore;
-import com.google.cloud.datastore.DatastoreOptions;
-import com.google.cloud.datastore.Entity;
-import com.google.cloud.datastore.FullEntity;
-import com.google.cloud.datastore.KeyFactory;
-import com.google.cloud.datastore.Query;
-import com.google.cloud.datastore.QueryResults;
-import com.google.cloud.datastore.StructuredQuery.OrderBy;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 
 public class AccountCreationServlet extends HttpServlet {
   @Override
-  public void doPost(HttpServletRequest req, HttpServletResponse resp)
-      throws IOException {
+  public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     String firstName = getParameter(req, "First Name", "");
     String lastName = getParameter(req, "Last Name", "");
     String phoneNumber = getParameter(req, "Phone Number", "");
@@ -47,52 +45,49 @@ public class AccountCreationServlet extends HttpServlet {
     String date = req.getParameter("datemin");
     String user = getParameter(req, "user", "Customer");
     
-    String kind;
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
     if(user.equals("Customer")){
-        kind = "Customer_Account";
+        Entity custEntity = new Entity("Customer");
+
         String cardNumber = getParameter(req, "Card Number", "");
         String securityNumber = getParameter(req, "Security Number", "");
-        Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-        KeyFactory keyFactory = datastore.newKeyFactory().setKind(kind);
-        FullEntity user_Account = Entity.newBuilder(keyFactory.newKey())
-            .set("firstName", firstName)
-            .set("lastName", lastName)
-            .set("phoneNumber", phoneNumber)
-            .set("address", address)
-            .set("city", city)
-            .set("zipCode", zipCode)
-            .set("state", state)
-            .set("username", username)
-            .set("password", password)
-            .set("date", date)
-            .set("cardNumber", cardNumber)
-            .set("securityNumber", securityNumber)
-            .build();
-            datastore.put(user_Account);
+
+        custEntity.setProperty("firstName", firstName);
+        custEntity.setProperty("lastName", lastName);
+        custEntity.setProperty("phoneNumber", phoneNumber);
+        custEntity.setProperty("address", address);
+        custEntity.setProperty("city", city);
+        custEntity.setProperty("zipCode", zipCode);
+        custEntity.setProperty("state", state);
+        custEntity.setProperty("username", username);
+        custEntity.setProperty("password", password);
+        custEntity.setProperty("date", date);
+        custEntity.setProperty("cardNumber", cardNumber);
+        custEntity.setProperty("securityNumber", securityNumber);
+        datastore.put(custEntity);
     }
     else{
-        kind = "Driver_Account";
+        Entity driverEntity = new Entity("Driver");
+
         String licenseNumber = getParameter(req, "Drivers License Number", "");
         String plateNumber = getParameter(req, "License Plate Number", "");
         String maxNumPassengers = getParameter(req, "mnp_entry", "");
-        Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-        KeyFactory keyFactory = datastore.newKeyFactory().setKind(kind);
-        FullEntity user_Account = Entity.newBuilder(keyFactory.newKey())
-            .set("firstName", firstName)
-            .set("lastName", lastName)
-            .set("phoneNumber", phoneNumber)
-            .set("address", address)
-            .set("city", city)
-            .set("zipCode", zipCode)
-            .set("state", state)
-            .set("username", username)
-            .set("password", password)
-            .set("date", date)
-            .set("licenseNumber", licenseNumber)
-            .set("plateNumber", plateNumber)
-            .set("maxNumPassengers", maxNumPassengers)
-            .build();
-            datastore.put(user_Account);
+        
+        driverEntity.setProperty("firstName", firstName);
+        driverEntity.setProperty("lastName", lastName);
+        driverEntity.setProperty("phoneNumber", phoneNumber);
+        driverEntity.setProperty("address", address);
+        driverEntity.setProperty("city", city);
+        driverEntity.setProperty("zipCode", zipCode);
+        driverEntity.setProperty("state", state);
+        driverEntity.setProperty("username", username);
+        driverEntity.setProperty("password", password);
+        driverEntity.setProperty("date", date);
+        driverEntity.setProperty("licenseNumber", licenseNumber);
+        driverEntity.setProperty("plateNumber", plateNumber);
+        driverEntity.setProperty("maxNumPassengers", maxNumPassengers);
+        datastore.put(driverEntity);
     }
 
     resp.sendRedirect("/index.html");
