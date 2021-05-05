@@ -38,35 +38,35 @@
         </header>
         <div class="body">
             <h2 class="sigtitle">Sign up</h2>
-            <form class="signup" action="/action_page.php">
+            <form class="signup" method="POST" action="/accountCreation">
                 <div class="row">
                     <div class="column" style="padding-left: 240px;">
                         <div class="nam_en">
                             <label>Full Name</label><br>
-                            <input type="text" class="boxes" placeholder="First Name" />
+                            <input type="text" name="First Name" class="boxes" placeholder="First Name" />
                         </div>
                         <div class="nam_en">
-                            <input type="text" class="boxes" placeholder="Last Name"/>
+                            <input type="text" name="Last Name" class="boxes" placeholder="Last Name"/>
                         </div>
                         <div class="phone_entry">
                             <label>Phone Number</label><br>
-                            <input type="text" class="boxes" placeholder="###-###-####"/>
+                            <input type="text" name="Phone Number" class="boxes" placeholder="###-###-####"/>
                         </div>
                         <div class="addr_entry">
                             <label>Street Address</label><br>
-                            <input type="text" class="boxes"/>
+                            <input type="text" name="Address" class="boxes"/>
                         </div>
                         <div class="city_zip_entry">
                             <label class="c_z_en">City</label><br>
-                            <input type="text" />
+                            <input type="text" name="City"/>
                         </div>
                         <div class="city_zip_entry">
                             <label class="c_z_en">Zip Code</label><br>
-                            <input type="text" />
+                            <input type="text" name="Zip Code"/>
                         </div>
                         <div class="state_entry">
                             <label class="state_label" style="padding-top: 10px; padding-bottom: 24px;">State</label><br>
-                            <select class="boxes">
+                            <select class="boxes" name="State">
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
                                 <option value="AZ">Arizona</option>
@@ -124,11 +124,11 @@
                     <div class="column">
                         <div class="us_pa">
                             <label class="up_l">Username</label><br>                       
-                            <input type="text" />
+                            <input type="text" name="Username"/>
                         </div>
                         <div class="us_pa">
                             <label class="up_l">Password</label><br>
-                            <input type="text" />
+                            <input type="text" name="Password"/>
                         </div>
                         <div class="mdy_entry" style="padding-top: 10px; padding-bottom: 24px;">
                             <label for="datemin">Birth Date</label><br>
@@ -143,15 +143,15 @@
                         </div>
                         <div id="show1" class="hide">
                             <label class="card_entry" style="padding-top: 10px;">Card Number</label><br>
-                            <input type="text" class="boxes" /><br>
-                            <label class="code_entry" style="padding-top: 10px;">Security Numbers</label><br>
-                            <input type="text" class="boxes" /><br>
+                            <input type="text" name="Card Number" class="boxes" /><br>
+                            <label class="code_entry" style="padding-top: 10px;">Security Number</label><br>
+                            <input type="text" name="Security Number" class="boxes" /><br>
                         </div>
                         <div id="show2" class="hide">
                             <label class="dln_entry" style="padding-top: 10px;">Drivers License Number</label><br>
-                            <input type="text" class="boxes" /><br>
+                            <input type="text" name="Drivers License Number" class="boxes" /><br>
                             <label class="lpn_entry" style="padding-top: 10px;">License Plate Number</label><br>
-                            <input type="text" class="boxes" /><br>
+                            <input type="text" name="License Plate Number" class="boxes" /><br>
                             <label for="mnp_entry" style="padding-top: 10px;">Max Number of Passengers</label>
                             <input type="number" id="mnp_entry" name="mnp_entry" min="1" max="10">
                         </div>                                      
