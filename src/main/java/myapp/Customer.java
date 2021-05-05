@@ -1,4 +1,4 @@
-package main.java.myapp;
+package myapp;
 
 public class Customer {
 
@@ -10,13 +10,17 @@ public class Customer {
     int birthday;
     String number;
     String address;
+    String city;
+    String zipCode;
+    String state;
     String password;
-    int cardNo;
+    String cardNo;
+    String securityNo;
     
     String type = "customer";
 
     public Customer(String firstName, String lastName, String username, int birthday, int birthmonth, int birthyear, String number,
-           String address, String password, int cardNo)
+           String address, String city, String zipCode, String state, String password, String cardNo, String securityNo)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -26,8 +30,12 @@ public class Customer {
         this.birthmonth = birthmonth;
         this.number = number;
         this.address = address;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.state = state;
         this.password = password;
         this.cardNo = cardNo;
+        this.securityNo = securityNo;
 
     }
 

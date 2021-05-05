@@ -1,4 +1,4 @@
-package main.java.myapp;
+package myapp;
 
 public class Driver {
 
@@ -10,6 +10,9 @@ public class Driver {
     int birthday;
     String number;
     String address;
+    String city;
+    String zipCode;
+    String state;
     String password;
     String license;
     String plateNum;
@@ -18,7 +21,7 @@ public class Driver {
     String type = "driver";
 
     public Driver(String firstName, String lastName, String username, int birthday, int birthmonth, int birthyear, String number,
-           String address, String password, String license, String plateNum, int numPassengers)
+           String address, String city, String zipCode, String state, String password, String license, String plateNum, int numPassengers)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,6 +31,9 @@ public class Driver {
         this.birthmonth = birthmonth;
         this.number = number;
         this.address = address;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.state = state;
         this.type = "driver";
         this.password = password;
         this.license = license;
