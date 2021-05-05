@@ -12,6 +12,16 @@
         <servlet-name>demo</servlet-name>
         <url-pattern>/demo</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>accountCreation</servlet-name>
+        <servlet-class>myapp.AccountCreationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>accountCreation</servlet-name>
+        <url-pattern>/accountCreation</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
