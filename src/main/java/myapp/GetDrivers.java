@@ -6,6 +6,8 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.CompositeFilter;
+import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
@@ -30,8 +32,12 @@ public class GetDrivers extends HttpServlet {
         String filterCity = getParameter(request, "city", "Chicago");
         String numPass = getParameter(request, "numPass", "1");
 
-        Filter propertyFilter = new FilterPredicate("city", FilterOperator.EQUAL, filterCity);
-        Query query = new Query("Driver").setFilter(propertyFilter);
+        Filter cityFilter = new FilterPredicate("city", FilterOperator.EQUAL, filterCity);
+        Filter numPassFilter = new FilterPredicate("maxNumPassengers", FilterOperator.GREATER_THAN_OR_EQUAL, numPass);
+
+        Filter validFilter = CompositeFilterOperator.and(cityFilter, numPassFilter);
+
+        Query query = new Query("Driver").setFilter(validFilter);
    
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         PreparedQuery results = datastore.prepare(query);
