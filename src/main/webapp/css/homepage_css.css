@@ -1,0 +1,54 @@
+/*header css*/
+
+nav ul li {
+    display: inline;
+    font-size: 1.5em;
+    color: white;
+}
+
+ a {
+    text-decoration: none;
+    color: white;
+}
+
+header {
+    background-color: black;
+}
+
+h1 {
+    text-align: center;
+    font-size:100px;
+    color: white;
+}
+
+li.driverslink {
+    padding-right: 1000px;
+}
+li.signuplink {
+    padding-left: 20px;
+}
+
+/*body css*/
+body {
+    background-color: #a4a6ab;
+}
+
+h2.Motto {
+    text-align: center;
+    font-size: 3.5rem;
+    padding-top: 50px;
+}
+
+h3.wtitle {
+    text-align: center;
+}
+
+section.whatwedo {
+    padding-top: 50px;
+text-align: center;
+}
+
+ul.au_con {
+    text-align: left;
+    padding-left: 550px;
+}
