@@ -22,7 +22,10 @@ h1 {
 }
 
 li.driverslink {
-    padding-right: 1000px;
+    padding-right: 20px;
+}
+li.wait_link {
+    padding-right: 1030px;
 }
 li.signuplink {
     padding-left: 20px;
