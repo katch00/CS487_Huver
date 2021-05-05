@@ -1,0 +1,87 @@
+/*header css*/
+
+nav ul li {
+    display: inline;
+    font-size: 1.5em;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+header {
+    background-color: black;
+}
+
+h1 {
+    text-align: center;
+    font-size:100px;
+    color: white;
+}
+
+li.signuplink {
+    padding-left: 20px;
+}
+
+li.driverslink {
+    color: black;
+    padding-right:1000px;
+}
+
+/*body css*/
+body {
+    background-color: #a4a6ab;
+}
+
+h2.sigtitle {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    font-size: 3.5rem;
+}
+
+div.nam_en {
+    display: inline-block;
+}
+
+div.us_pa {
+    display:inline-block;
+}
+
+label.up_l {
+    display: block;
+}
+
+div.city_zip_entry {
+    display:inline-block;
+}
+
+label.c_z_en {
+    display: block;
+}
+
+.hide {
+  display: none;
+}
+
+input.boxes {
+    margin-top: 24px;
+}
+
+.nam_en {
+    padding-top: 10px;
+}
+
+.phone_entry {
+   padding-top: 10px; 
+}
+
+.addr_entry {
+    padding-top: 10px;
+}
+
+.city_zip_entry {
+    padding-top: 10px;
+}
