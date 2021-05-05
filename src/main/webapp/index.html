@@ -2,17 +2,37 @@
 <html>
   <head>
     <title>App Engine Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/homepage_css.css" />
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   </head>
   <body>
-    <div id="result">Loading...</div>
-
-    <script>
-$(document).ready(function() {
-  $.getJSON('/demo', function(data) {
-    $('#result').html("Hello, " + data.name);
-  });
-});
-    </script>
+      <div class="page">
+        <header>
+            <h1 class="pagetitle"><a href="index.html">H&#220;ver</a></h1>
+            <nav class="navbar">
+                <ul>
+                    <li class="driverslink"><a href="viewdrivers.html">Drivers</a></li>
+                    <li class="loginlink"><a href="login.html">Log in</a></li>
+                    <li class="signuplink"><a href="signup.html">Sign up</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="body">
+            <h2 class="Motto">"Uber, but <i>better</i>"</h2>
+            <section class="whatwedo">
+                <h3 class="wtitle">About us:</h3>
+                    <p class="au_top">A groundbreaking new ride sharing service much better than Uber</p>
+                    <ul class="au_con">
+                        <li>Get quick affordable rides with our suite of qualified drivers</li>
+                        <li>Make a rocking wage as one of our team of drivers</li>
+                        <li>Choose your own working hours</li>
+                    </ul>
+            </section>                
+        </div>
+        </div>
   </body>
 </html>

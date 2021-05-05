@@ -1,0 +1,31 @@
+/*header css*/
+
+nav ul li {
+    display: inline;
+    font-size: 1.5em;
+    color: white;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+header {
+    background-color: black;
+}
+
+h1 {
+    text-align: center;
+    font-size:100px;
+    color: white;
+}
+
+li.signuplink {
+    padding-left: 20px;
+}
+
+/*body css*/
+body {
+    background-color: #a4a6ab;
+}
