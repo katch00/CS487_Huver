@@ -22,6 +22,24 @@
         <url-pattern>/accountCreation</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>getDrivers</servlet-name>
+        <servlet-class>main.java.myapp.GetDrivers</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getDrivers</servlet-name>
+        <url-pattern>/getDrivers</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>sendAddress</servlet-name>
+        <servlet-class>myapp.SendAddress</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sendAddress</servlet-name>
+        <url-pattern>/sendAddress</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
