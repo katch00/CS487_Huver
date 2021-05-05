@@ -37,6 +37,7 @@ body {
 
 h2.sigtitle {
     padding-top: 50px;
+    padding-bottom: 50px;
     text-align: center;
     font-size: 3.5rem;
 }
@@ -59,4 +60,28 @@ div.city_zip_entry {
 
 label.c_z_en {
     display: block;
+}
+
+.hide {
+  display: none;
+}
+
+input.boxes {
+    margin-top: 24px;
+}
+
+.nam_en {
+    padding-top: 10px;
+}
+
+.phone_entry {
+   padding-top: 10px; 
+}
+
+.addr_entry {
+    padding-top: 10px;
+}
+
+.city_zip_entry {
+    padding-top: 10px;
 }
