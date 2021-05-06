@@ -158,6 +158,10 @@
             })
         }, 3000);
 
+        
+
+    </script>
+    <script>
         var myFunc = function() {
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
@@ -171,11 +175,6 @@
                 window.location.href = '/RideComplete.html';
             }
         }
-        window.onload = function() {
-            setTimeout(myFunc, 10000);
-        }
-    </script>
-    <script>
       async function onLoad(){
         var username = await checkUsername();
             console.log(username + "1");                          
@@ -194,6 +193,7 @@
                 document.getElementById('waitRoom').style.display = "";
                 document.getElementById('account').style.display = "";
             }
+            setTimeout(myFunc, 10000);
         }
     </script>
   </head>
