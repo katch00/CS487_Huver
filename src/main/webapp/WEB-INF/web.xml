@@ -22,6 +22,15 @@
         <url-pattern>/accountCreation</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>sessionLogin</servlet-name>
+        <servlet-class>myapp.SessionLoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sessionLogin</servlet-name>
+        <url-pattern>/sessionLogin</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
