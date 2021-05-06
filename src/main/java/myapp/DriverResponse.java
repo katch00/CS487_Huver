@@ -20,7 +20,7 @@ public class DriverResponse extends HttpServlet
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String custName = getParameter(req, "cust", "");
-        System.out.println(custName);
+        double cost = Double.parseDouble(getParameter(req, "cost", ""));
         String driverResponse = getParameter(req, "driverResp", "");
 
         String driverName = "";
@@ -42,15 +42,28 @@ public class DriverResponse extends HttpServlet
    
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         PreparedQuery results = datastore.prepare(query);
-        System.out.println(driverResponse);
+
         String true1 = "true";
         if(driverResponse.equals("accepted"))
         {
+            Filter custNameFilter = new FilterPredicate("username", FilterOperator.EQUAL, custName);
+            System.out.println(custName);
+            Query newquery = new Query("Customer").setFilter(custNameFilter);
+            PreparedQuery newresults = datastore.prepare(newquery);
+            for (Entity newentity : newresults.asIterable()) {
+                double money = (double) newentity.getProperty("money");
+                double newWallet = money - cost;
+                System.out.println("new amount" + newWallet);
+                newentity.setProperty("money", newWallet);
+                datastore.put(newentity);
+            }
+            
             for (Entity entity : results.asIterable()) {
                 entity.setProperty("isAccepted", true1);
                 datastore.put(entity);
                 resp.sendRedirect("/DriveInProgress.html?user=driver");
             }
+
         }
         else
         {
