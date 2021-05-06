@@ -83,6 +83,7 @@ public class RequestDriver extends HttpServlet {
         String driverName = getParameter(req, "driverName", "");
         String custName = getParameter(req, "custName", "");
         String cost = getParameter(req, "cost", "");
+        System.out.println(cost);
 
         Filter driverFilter = new FilterPredicate("driver", FilterOperator.EQUAL, driverName);
         Filter custFilter = new FilterPredicate("cust", FilterOperator.EQUAL, custName);
@@ -100,7 +101,7 @@ public class RequestDriver extends HttpServlet {
 
         if(isAccepted.equals("true"))
         {
-            resp.sendRedirect("/DriveInProgress.html?user=cust&cost"+cost);
+            resp.sendRedirect("/DriveInProgress.html?user=cust&cost="+cost+"&driver="+driverName);
         }
         else if(isAccepted.equals("rejected"))
         {

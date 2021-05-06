@@ -112,6 +112,15 @@
         <url-pattern>/driverResponse</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>submitReview</servlet-name>
+        <servlet-class>main.java.myapp.SubmitReview</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>submitReview</servlet-name>
+        <url-pattern>/submitReview</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
