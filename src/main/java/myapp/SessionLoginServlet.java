@@ -83,6 +83,7 @@ public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOExc
     else{
       HttpSession session = req.getSession();
       session.setAttribute("username", username);
+      session.setAttribute("userType", kind);
       System.out.println("Username: " + username);    
       resp.sendRedirect("/index.html");
     }
