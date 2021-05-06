@@ -33,3 +33,15 @@ function createDriverElement(driver) {
   driverElement.appendChild(selectButtonElement);
   return driverElement;
 }
+
+function createCost(time){
+  var cost = (1.5 + Math.random()) * time;
+  console.log(cost);
+  return cost;
+}
+
+function createTime(min, max){
+  var time = Math.random() * min + (max-min);
+  console.log(time);
+  return time;
+}
