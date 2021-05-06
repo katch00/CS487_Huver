@@ -17,6 +17,7 @@ public class Customer {
     String cardNo;
     String securityNo;
     int overallRating;
+    
     String type = "customer";
 
     public Customer(String firstName, String lastName, String username, int birthday, int birthmonth, int birthyear, String number,

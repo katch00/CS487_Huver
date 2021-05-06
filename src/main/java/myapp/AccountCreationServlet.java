@@ -88,10 +88,13 @@ public class AccountCreationServlet extends HttpServlet {
         driverEntity.setProperty("licenseNumber", licenseNumber);
         driverEntity.setProperty("plateNumber", plateNumber);
         driverEntity.setProperty("maxNumPassengers", maxNumPassengers);
+        driverEntity.setProperty("overallRating",0);
         driverEntity.setProperty("isOnline","false");
         driverEntity.setProperty("isAvailable","false");
         datastore.put(driverEntity);
     }
+
+    System.out.println("Account created.");
 
     resp.sendRedirect("/index.html");
   }
