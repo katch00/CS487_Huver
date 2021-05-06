@@ -24,7 +24,7 @@
         </header>
         <div class="body">
             <h2 class="logtitle">Log In</h2>
-            <form class="login">
+            <form class="login" method="POST" action="/sessionLogin">
                 <input type="radio" id="Customer" name="role" value="Customer">
                 <label for="Customer">Customer</label><br>
                 <input type="radio" id="Driver" name="role" value="Driver">
@@ -33,6 +33,7 @@
                 <input type="text" id="username" name="username"><br>
                 <label for="pwd">Password:</label><br>
                 <input type="password" id="pwd" name="pwd">
+                <button>Submit</button>
             </form>
                             
         </div>

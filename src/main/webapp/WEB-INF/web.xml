@@ -23,6 +23,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>sessionLogin</servlet-name>
+        <servlet-class>myapp.SessionLoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sessionLogin</servlet-name>
+        <url-pattern>/sessionLogin</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>getDrivers</servlet-name>
         <servlet-class>main.java.myapp.GetDrivers</servlet-class>
     </servlet>
