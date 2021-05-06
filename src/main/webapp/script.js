@@ -8,25 +8,32 @@ function getDrivers(city, numPass) {
 
 }
 
-function sendRequest(name, cost) {
-    fetch(`/requestDriver?driverName=${name}&cost=${cost}`);
-}
-
 function createDriverElement(driver) {
   const driverElement = document.createElement('li');
   driverElement.className = 'driver';
 
   const nameElement = document.createElement('span');
-  const time = "15";
-  const cost = "30";
-  nameElement.innerText = 'Name: ' + driver.firstName + "  Expected wait time:" + time + "  Total Cost:" + cost;
+  const time = createTime(7, 32).toFixed(2);
+  const cost = createCost(time).toFixed(2);
+  nameElement.innerText = 'Name: ' + driver.firstName + ".  Expected wait time: " + time + " mins.  Total Cost: $" + cost;
   
   const breakEl = document.createElement('br');
   const selectButtonElement = document.createElement('button');
   selectButtonElement.innerText = 'Select Me!';
   selectButtonElement.className = 'button';
   selectButtonElement.style = 'background-color: purple; color: white;';
-  //selectButtonElement.onclick = `sendRequest(${driver.firstName}, ${cost})`;
+  selectButtonElement.onclick = 
+    function () {
+      console.log(driver.firstName);
+      fetch(`/requestDriver?driverName=${driver.firstName}&cost=${cost}&time=${time}`, {method: 'POST'})
+      .then(response => {
+          console.log(response);
+        if (response.redirected) {
+            window.location.href = response.url;
+        }
+      })
+      
+  }
 
   driverElement.appendChild(nameElement);
   driverElement.appendChild(breakEl);
