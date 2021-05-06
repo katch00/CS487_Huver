@@ -151,13 +151,6 @@
         );
         infoWindow.open(map);
       }
-        function isAccepted(driverName, custName) {
-            console.log('beannns');
-            fetch(`/requestDriver?driverName=${driverName}&custName=${custName}`)
-            .then(response =>{
-                console.log(response);
-            })
-        }
 
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
@@ -173,7 +166,6 @@
             }
             })
         }, 3000);
-        window.setInterval(function(){ console.log("Hello"); }, 3000);
     
     </script>
   </head>

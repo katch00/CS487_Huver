@@ -63,14 +63,17 @@ public class SessionLoginServlet extends HttpServlet {
         Query query = new Query(kind).setFilter(correctUsername);
         PreparedQuery results = datastore.prepare(query);
         boolean valid = false;
+        String firstName ="";
         for (Entity entity : results.asIterable()) {
             if(entity.getProperty("password").equals(password)){
                 System.out.println("Valid account");
                 valid = true;
+                firstName = (String) entity.getProperty("firstName");
                 if(kind.equals("Driver"))
                 {
                     entity.setProperty("isAvailable", "true");
                     entity.setProperty("isOnline", "true");
+                    
                 }
             }      
         }
@@ -89,6 +92,7 @@ public class SessionLoginServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("username", username);
             session.setAttribute("userType", kind);
+            session.setAttribute("name", firstName);
             System.out.println("Username: " + username);    
             resp.sendRedirect("/index.html");
         }

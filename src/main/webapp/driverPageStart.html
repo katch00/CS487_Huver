@@ -144,6 +144,17 @@
             : "Error: Your browser doesn't support geolocation."
         );
         infoWindow.open(map);
+
+        window.setInterval(function isAccepted(driverName, custName) {
+            console.log('beannns');
+            fetch('/checkRequests')
+            .then(response =>{
+                console.log(response);
+                if (response.redirected) {
+                window.location.href = response.url;
+            }
+            })
+        }, 3000);
       }
     </script>
   </head>
