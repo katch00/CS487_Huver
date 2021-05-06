@@ -42,7 +42,7 @@
     
     <servlet>
         <servlet-name>getDrivers</servlet-name>
-        <servlet-class>myapp.GetDrivers</servlet-class>
+        <servlet-class>main.java.myapp.GetDrivers</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getDrivers</servlet-name>

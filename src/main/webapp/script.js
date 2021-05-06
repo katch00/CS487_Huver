@@ -8,18 +8,25 @@ function getDrivers(city, numPass) {
 
 }
 
+function sendRequest(name, cost) {
+    fetch(`/requestDriver?driverName=${name}&cost=${cost}`);
+}
+
 function createDriverElement(driver) {
   const driverElement = document.createElement('li');
   driverElement.className = 'driver';
 
   const nameElement = document.createElement('span');
-  nameElement.innerText = 'Name: ' + driver.firstName;
-
+  const time = "15";
+  const cost = "30";
+  nameElement.innerText = 'Name: ' + driver.firstName + "  Expected wait time:" + time + "  Total Cost:" + cost;
+  
   const breakEl = document.createElement('br');
   const selectButtonElement = document.createElement('button');
   selectButtonElement.innerText = 'Select Me!';
   selectButtonElement.className = 'button';
   selectButtonElement.style = 'background-color: purple; color: white;';
+  //selectButtonElement.onclick = `sendRequest(${driver.firstName}, ${cost})`;
 
   driverElement.appendChild(nameElement);
   driverElement.appendChild(breakEl);

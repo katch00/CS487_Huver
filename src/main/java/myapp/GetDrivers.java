@@ -1,4 +1,4 @@
-package myapp;
+package main.java.myapp;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -57,7 +57,7 @@ public class GetDrivers extends HttpServlet {
             String license = (String) entity.getProperty("licenseNumber");
             String plateNum = (String) entity.getProperty("plateNumber");
             String numPassengers = (String) entity.getProperty("maxNumPassengers");
-            int overallRating = (int) entity.getProperty("overallRating");
+            long overallRating = (long) entity.getProperty("overallRating");
             String isOnline = (String) entity.getProperty("isOnline");
             String isAvailable = (String) entity.getProperty("isAvailable");
       
