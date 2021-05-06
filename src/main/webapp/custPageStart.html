@@ -168,8 +168,10 @@
             var userType = await checkUserType();
             if(userType === "Customer"){
                 document.getElementById('drivers').style.display = "";
+                document.getElementById('account').style.display = "";
             } else if(userType === "Driver"){
                 document.getElementById('waitRoom').style.display = "";
+                document.getElementById('account').style.display = "";
             }
         }
     </script>
@@ -182,6 +184,7 @@
                 <ul>
                     <li id="drivers" style="display:none;" class="driverslink"><a href="custPageStart.html">Drivers</a></li>
                     <li id="waitRoom" style="display:none;" class="wait_link"><a href="driverPageStart.html">Waiting Room</a> </li>
+                    <li id="account" style="display:none;" class="account"><a href="accountPage.html">Account Info</a></li>
                     <li id="login" class="loginlink"><a href="login.html">Log in</a></li>
                     <li id="signup" class="signuplink"><a href="signup.html">Sign up</a></li>
                     <li id="signout" style="display:none;" class="signout"><a href="/signout">Sign out</a></li>
