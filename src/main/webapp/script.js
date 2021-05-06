@@ -94,6 +94,16 @@ function createfavElement(fav) {
   return favElement;
 }
 
+function fillReceiptLabels(cost, driver)
+{
+    var driverLable = document.getElementById('driverComplete');
+    driverLable.innerText = `Your ride with ${driver} is complete!`;
+    var hiddenInput = document.getElementById('drivName');
+    hiddenInput.value = driver;
+    //var totalLabel = document.getElementById('yourTotal');
+    //totalLabel.innerText =`Your total today was: $${cost}.`;
+}
+
 function setRequest(cust, cost, time)
 {
     var customerLabel = document.getElementById('customer');

@@ -68,30 +68,30 @@
                     <div class="column" style="padding-left: 240px;">
                         <div class="nam_en">
                             <label>Full Name</label><br>
-                            <input type="text" name="First Name" class="boxes" placeholder="First Name" />
+                            <input type="text" name="First Name" class="boxes" placeholder="First Name" required/>
                         </div>
                         <div class="nam_en">
-                            <input type="text" name="Last Name" class="boxes" placeholder="Last Name"/>
+                            <input type="text" name="Last Name" class="boxes" placeholder="Last Name" required/>
                         </div>
                         <div class="phone_entry">
                             <label>Phone Number</label><br>
-                            <input type="text" name="Phone Number" class="boxes" placeholder="###-###-####"/>
+                            <input type="text" name="Phone Number" class="boxes" placeholder="###-###-####" required/>
                         </div>
                         <div class="addr_entry">
                             <label>Street Address</label><br>
-                            <input type="text" name="Address" class="boxes"/>
+                            <input type="text" name="Address" class="boxes" required/>
                         </div>
                         <div class="city_zip_entry">
                             <label class="c_z_en">City</label><br>
-                            <input type="text" name="City"/>
+                            <input type="text" name="City" required/>
                         </div>
                         <div class="city_zip_entry">
                             <label class="c_z_en">Zip Code</label><br>
-                            <input type="text" name="Zip Code"/>
+                            <input type="text" name="Zip Code" required/>
                         </div>
                         <div class="state_entry">
                             <label class="state_label" style="padding-top: 10px; padding-bottom: 24px;">State</label><br>
-                            <select class="boxes" name="State">
+                            <select class="boxes" name="State" required>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
                                 <option value="AZ">Arizona</option>
@@ -149,15 +149,15 @@
                     <div class="column">
                         <div class="us_pa">
                             <label class="up_l">Username</label><br>                       
-                            <input type="text" name="Username"/>
+                            <input type="text" name="Username" required/>
                         </div>
                         <div class="us_pa">
                             <label class="up_l">Password</label><br>
-                            <input type="password" name="Password"/>
+                            <input type="password" name="Password" required/>
                         </div>
                         <div class="mdy_entry" style="padding-top: 10px; padding-bottom: 24px;">
                             <label for="datemin">Birth Date</label><br>
-                            <input type="date" class="boxes" id="datemin" name="datemin" min="1900-01-02">
+                            <input type="date" class="boxes" id="datemin" name="datemin" min="1900-01-02" required>
                         </div>  
                         <div class="user_select">
                             <label style="padding-top: 10px; padding-bottom: 24px;">User Type</label><br>
@@ -178,7 +178,7 @@
                             <label class="lpn_entry" style="padding-top: 10px;">License Plate Number</label><br>
                             <input type="text" name="License Plate Number" class="boxes" /><br>
                             <label for="mnp_entry" style="padding-top: 10px;">Max Number of Passengers</label>
-                            <input type="number" id="mnp_entry" name="mnp_entry" min="1" max="10">
+                            <input type="number" id="mnp_entry" name="mnp_entry" min="1" max="10" >
                         </div>                                      
                     </div>
                 </div>

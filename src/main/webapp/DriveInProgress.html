@@ -162,10 +162,11 @@
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const user = urlParams.get('user');
+            const driver = urlParams.get('driver');
             const cost = urlParams.get('cost');
             if(user == 'cust')
             {
-                window.location.href = '/receiptPage.html?cost=' + cost;
+                window.location.href = '/receiptPage.html?cost=' + cost +'&driver=' + driver;
             }else {
                 window.location.href = '/RideComplete.html';
             }
