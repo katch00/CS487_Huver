@@ -85,6 +85,15 @@
         <url-pattern>/checkRequests</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>driverResponse</servlet-name>
+        <servlet-class>main.java.myapp.DriverResponse</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>driverResponse</servlet-name>
+        <url-pattern>/driverResponse</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>

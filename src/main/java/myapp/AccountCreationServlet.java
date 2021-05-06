@@ -48,12 +48,12 @@ public class AccountCreationServlet extends HttpServlet {
     
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
+    Random rand = new Random();
+    double money = Math.floor(rand.nextDouble() * 10000)/100;
+    System.out.println("Money: $" + money);
+
     if(user.equals("Customer")){
         Entity custEntity = new Entity("Customer");
-
-        Random rand = new Random();
-        double money = Math.floor(rand.nextDouble() * 10000)/100;
-        System.out.println("Money: $" + money);
 
         String cardNumber = getParameter(req, "Card Number", "");
         String securityNumber = getParameter(req, "Security Number", "");
@@ -71,6 +71,7 @@ public class AccountCreationServlet extends HttpServlet {
         custEntity.setProperty("cardNumber", cardNumber);
         custEntity.setProperty("securityNumber", securityNumber);
         custEntity.setProperty("overallRating",0);
+        custEntity.setProperty("money", money);
         datastore.put(custEntity);
     }
     else{
@@ -96,6 +97,7 @@ public class AccountCreationServlet extends HttpServlet {
         driverEntity.setProperty("overallRating",0);
         driverEntity.setProperty("isOnline","false");
         driverEntity.setProperty("isAvailable","false");
+        driverEntity.setProperty("money", money);
         datastore.put(driverEntity);
     }
 

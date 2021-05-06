@@ -1,6 +1,8 @@
 package main.java.myapp;
 
 import javax.servlet.http.*;
+
+import java.io.FilterOutputStream;
 import java.io.IOException;
 
 import com.google.appengine.api.datastore.DatastoreService;
@@ -12,6 +14,7 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 
 public class CheckRequests extends HttpServlet {
     @Override
@@ -27,8 +30,12 @@ public class CheckRequests extends HttpServlet {
         }
 
         Filter driverFilter = new FilterPredicate("driver", FilterOperator.EQUAL, name);
+        Filter statusFilter = new FilterPredicate("isAccepted", FilterOperator.NOT_EQUAL, "rejected");
+        Filter status2Filter = new FilterPredicate("isAccepted", FilterOperator.NOT_EQUAL, "true");
 
-        Query query = new Query("Requests").setFilter(driverFilter);
+        Filter validFilter = CompositeFilterOperator.and(driverFilter, statusFilter, status2Filter);
+
+        Query query = new Query("Requests").setFilter(validFilter);
    
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         PreparedQuery results = datastore.prepare(query);
