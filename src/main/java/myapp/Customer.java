@@ -16,6 +16,7 @@ public class Customer {
     String password;
     String cardNo;
     String securityNo;
+    int overallRating;
     
     String type = "customer";
 
@@ -36,7 +37,7 @@ public class Customer {
         this.password = password;
         this.cardNo = cardNo;
         this.securityNo = securityNo;
-
+        this.overallRating = 0;
     }
 
 }

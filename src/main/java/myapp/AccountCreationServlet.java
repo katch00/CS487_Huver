@@ -65,6 +65,7 @@ public class AccountCreationServlet extends HttpServlet {
         custEntity.setProperty("date", date);
         custEntity.setProperty("cardNumber", cardNumber);
         custEntity.setProperty("securityNumber", securityNumber);
+        custEntity.setProperty("overallRating",0);
         datastore.put(custEntity);
     }
     else{
@@ -87,6 +88,9 @@ public class AccountCreationServlet extends HttpServlet {
         driverEntity.setProperty("licenseNumber", licenseNumber);
         driverEntity.setProperty("plateNumber", plateNumber);
         driverEntity.setProperty("maxNumPassengers", maxNumPassengers);
+        driverEntity.setProperty("overallRating",0);
+        driverEntity.setProperty("isOnline","false");
+        driverEntity.setProperty("isAvailable","false");
         datastore.put(driverEntity);
     }
 
