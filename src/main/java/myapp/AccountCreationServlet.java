@@ -103,7 +103,7 @@ public class AccountCreationServlet extends HttpServlet {
 
     System.out.println("Account created.");
 
-    resp.sendRedirect("/index.html");
+    resp.sendRedirect("/successPage.html");
   }
 
   private String getParameter(HttpServletRequest request, String name, String defaultValue) {
