@@ -74,7 +74,7 @@ public class SubmitReview extends HttpServlet {
             }
         }
 
-        resp.sendRedirect("/index.html");
+        resp.sendRedirect("/FeedbackSubmit.html");
 
         
     }
