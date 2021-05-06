@@ -30,7 +30,7 @@ function createDriverElement(driver) {
 function getFavorites(username) {
   fetch(`/getFavorites?username=${username}`).then(response => response.json()).then((favs) => {
     const favListEl = document.getElementById('favList');
-    favs.forEach(() => {
+    favs.forEach((fav) => {
         favListEl.appendChild(createfavElement(fav));
     })
   });

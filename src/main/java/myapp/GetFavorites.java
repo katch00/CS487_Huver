@@ -48,31 +48,34 @@ public class GetFavorites extends HttpServlet {
                 resp.sendRedirect("/index.html");
             }
 
-            if(username_sesh != null) {
-
-                Filter userFilter = new FilterPredicate("username", FilterOperator.EQUAL, username_sesh);
+            
+            if(username_sesh != null){
+                Filter userFilter = new FilterPredicate("user", FilterOperator.EQUAL, username_sesh);
 
                 Query query = new Query("Favorites").setFilter(userFilter);
-        
+                
                 DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
                 PreparedQuery results = datastore.prepare(query);
-
+                
                 List<Favorites> favs = new ArrayList<>();
+               
                 for (Entity entity : results.asIterable()) {
-                    String username = (String) entity.getProperty("username");
-                    String address = (String) entity.getProperty("address");
+                    String username = (String) entity.getProperty("user");
+                    String address = (String) entity.getProperty("staddr");
                     String city = (String) entity.getProperty("city");
-                    String zipCode = (String) entity.getProperty("zipCode");
+                    String zipCode = (String) entity.getProperty("zip");
                     String state = (String) entity.getProperty("state");
             
                     Favorites fav = new Favorites(username, address, city, zipCode, state);
                     favs.add(fav);
+                                        
                 }
                 String json = convertToJson(favs);
 
                 resp.setContentType("application/json;");
                 resp.getWriter().println(json); 
             }
+            
     }
 
     public String convertToJson(List<Favorites> arr) {
