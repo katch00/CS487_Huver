@@ -160,9 +160,24 @@
         const city = urlParams.get('city');
         const numPass = urlParams.get('numPass');
         
-        function onLoad()
+        async function onLoad()
         {
             getDrivers(city, numPass);
+            var username = await checkUsername();
+            console.log(username + "1");                          
+            if(username != null && username !== ""){
+                console.log(username + "2");  
+                document.getElementById('login').style.display = "none";
+                document.getElementById('signup').style.display = "none";
+                document.getElementById('signout').style.display = "";
+            }
+            //Makes the customer or driver pages visible if they are logged in.
+            var userType = await checkUserType();
+            if(userType === "Customer"){
+                document.getElementById('drivers').style.display = "";
+            } else if(userType === "Driver"){
+                document.getElementById('waitRoom').style.display = "";
+            }
         }
     </script>
   </head>
@@ -172,10 +187,11 @@
             <h1 class="pagetitle"><a href="index.html">H&#220;ver</a></h1>
             <nav class="navbar">
                 <ul>
-                    <li class="driverslink"><a href="custPageStart.html">Drivers</a></li>
-                    <li class="wait_link"><a href="driverPageStart.html">Waiting Room</a> </li>
-                    <li class="loginlink"><a href="login.html">Log in</a></li>
-                    <li class="signuplink"><a href="signup.html">Sign up</a></li>
+                    <li id="drivers" style="display:none;" class="driverslink"><a href="custPageStart.html">Drivers</a></li>
+                    <li id="waitRoom" style="display:none;" class="wait_link"><a href="driverPageStart.html">Waiting Room</a> </li>
+                    <li id="login" class="loginlink"><a href="login.html">Log in</a></li>
+                    <li id="signup" class="signuplink"><a href="signup.html">Sign up</a></li>
+                    <li id="signout" style="display:none;" class="signout"><a href="/signout">Sign out</a></li>
                 </ul>
             </nav>
         </header>
