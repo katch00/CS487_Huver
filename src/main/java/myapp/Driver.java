@@ -1,4 +1,4 @@
-package myapp;
+package main.java.myapp;
 
 public class Driver {
 

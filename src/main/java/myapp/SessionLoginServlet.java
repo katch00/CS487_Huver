@@ -77,7 +77,7 @@ public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOExc
         pwriter.print("alert('Invalid username or password');");  
         pwriter.print("</script>");
         //pwriter.print("<a href='/index.html'>Return to Login</a>");
-        pwriter.print("<meta http-equiv = 'refresh' content = '0'; url='/login.html' />");
+        pwriter.print("<meta http-equiv =\"refresh\" content = \"0; url=/login.html\">");
         pwriter.close();
     }
     else{
