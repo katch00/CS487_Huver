@@ -28,7 +28,7 @@ function createDriverElement(driver) {
 }
 
 function createCost(time){
-  var cost = (1 + Math.random()) * time;
+  var cost = (1.5 + Math.random()) * time;
   console.log(cost);
   return cost;
 }
