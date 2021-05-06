@@ -71,7 +71,7 @@ public class AccountCreationServlet extends HttpServlet {
         custEntity.setProperty("cardNumber", cardNumber);
         custEntity.setProperty("securityNumber", securityNumber);
         custEntity.setProperty("overallRating",0);
-        custEntity.setProperty("money", money);
+        custEntity.setProperty("money", money+50);
         datastore.put(custEntity);
     }
     else{

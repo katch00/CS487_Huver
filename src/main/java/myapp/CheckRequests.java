@@ -45,7 +45,7 @@ public class CheckRequests extends HttpServlet {
             System.out.println(isRequested);
             if(isRequested.equals("true"))
             {
-                String cost = (String) entity.getProperty("cost");
+                double cost = (double) entity.getProperty("cost");
                 String time = (String) entity.getProperty("time");
                 String cust = (String) entity.getProperty("cust");
                 resp.sendRedirect("/requestResponse.html?cust="+cust+"&cost="+cost+"&time="+time);

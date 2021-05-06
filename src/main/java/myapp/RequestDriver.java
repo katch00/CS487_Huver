@@ -24,7 +24,8 @@ public class RequestDriver extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String driverName = getParameter(req, "driverName", "");
-        String cost = getParameter(req, "cost", "");
+        double cost = Double.parseDouble(getParameter(req, "cost", ""));
+        System.out.println("Cost=" + cost);
         String time = getParameter(req, "time", "");
         
         String username = null;
@@ -39,28 +40,49 @@ public class RequestDriver extends HttpServlet {
         }
 
         // insert check if user can pay
+
+        Filter custFilter = new FilterPredicate("username", FilterOperator.EQUAL, username);
+
+        Query query = new Query("Customer").setFilter(custFilter);
+   
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        PreparedQuery results = datastore.prepare(query);
 
-        Entity reqEntity = new Entity("Requests");
-        if(username != null)
+        double wallet = 0;
+        for (Entity entity : results.asIterable()) {
+            wallet = (double) entity.getProperty("money");
+        }
+
+        if(wallet >= cost)
         {
-            reqEntity.setProperty("cust", username);
-            reqEntity.setProperty("driver", driverName);
-            reqEntity.setProperty("cost", cost);
-            reqEntity.setProperty("time", time);
-            reqEntity.setProperty("isRequested", "true");
-            reqEntity.setProperty("isAccepted", "false");
+            Entity reqEntity = new Entity("Requests");
+            if(username != null)
+            {
+                reqEntity.setProperty("cust", username);
+                reqEntity.setProperty("driver", driverName);
+                reqEntity.setProperty("cost", cost);
+                reqEntity.setProperty("time", time);
+                reqEntity.setProperty("isRequested", "true");
+                reqEntity.setProperty("isAccepted", "false");
 
-            datastore.put(reqEntity);
+                datastore.put(reqEntity);
+            }
+        
+            resp.sendRedirect("/custWaitingPage.html?driverName="+driverName+"&custName="+username+"&cost="+cost);
+        }
+        else
+        {
+            resp.sendRedirect("/login.html");
         }
         
-        resp.sendRedirect("/custWaitingPage.html?driverName="+driverName+"&custName="+username);
+        //resp.sendRedirect("/custWaitingPage.html?driverName="+driverName+"&custName="+username+"&cost="+cost);
     }
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String driverName = getParameter(req, "driverName", "");
         String custName = getParameter(req, "custName", "");
+        String cost = getParameter(req, "cost", "");
 
         Filter driverFilter = new FilterPredicate("driver", FilterOperator.EQUAL, driverName);
         Filter custFilter = new FilterPredicate("cust", FilterOperator.EQUAL, custName);
@@ -78,7 +100,7 @@ public class RequestDriver extends HttpServlet {
 
         if(isAccepted.equals("true"))
         {
-            resp.sendRedirect("/DriveInProgress.html?user=cust");
+            resp.sendRedirect("/DriveInProgress.html?user=cust&cost"+cost);
         }
         else if(isAccepted.equals("rejected"))
         {

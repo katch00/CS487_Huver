@@ -17,13 +17,13 @@ public class Customer {
     String cardNo;
     String securityNo;
     long overallRating;
-    double wallet;
+    long wallet;
     
     String type = "customer";
 
     public Customer(String firstName, String lastName, String username, int birthday, int birthmonth, int birthyear, String number,
            String address, String city, String zipCode, String state, String password, String cardNo, String securityNo, int overallRating,
-           double wallet)
+           long wallet)
     {
         this.firstName = firstName;
         this.lastName = lastName;
