@@ -4,20 +4,62 @@
     <title>Huver</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="script.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="/css/homepage_css.css" />
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <style>
         label {
-            padding-right: 50px;
+            padding-right: 20px;
+            padding-top: 20px;
         }
         div.body {
             padding-left: 500px;
         }
     </style>
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const username = urlParams.get('username');
+        
+        async function onLoad()
+        {
+            var userType = await checkUserType();
+            var usernameLabel = document.getElementById('username');
+            var firstNameLabel = document.getElementById('firstName');
+            var lastNameLabel = document.getElementById('lastName');
+            var staddrLabel = document.getElementById('staddr');
+            var cityLabel = document.getElementById('city');
+            var stateLabel = document.getElementById('state');
+            var zipLabel = document.getElementById('zipCode');
+            var phoneNumberLabel = document.getElementById('phoneNumber');
+            var cardNumberLabel = document.getElementById('cardNumber');
+            var securityNumberLabel = document.getElementById('securityNumber');
+            var licenseNumberLabel = document.getElementById('licenseNumber');
+            var plateNumberLabel = document.getElementById('plateNumber');
+            fetch(`/getUserInfo?usertype=${userType}&username=${username}`).then(response => response.json()).then((info) => {
+                info.forEach((i) => {
+                    usernameLabel.innerText = i.username;
+                    console.log(i);
+                    firstNameLabel.innerText = i.firstName;
+                    lastNameLabel.innerText = i.lastName;
+                    staddrLabel.innerText = i.address;
+                    cityLabel.innerText = i.city;
+                    stateLabel.innerText = i.state;
+                    zipLabel.innerText = i.zipCode;
+                    phoneNumberLabel.innerText = i.number;
+                    cardNumberLabel.innerText = i.cardNo;
+                    securityNumberLabel.innerText = i.securityNo;
+                    licenseNumberLabel.innerText = i.license;
+                    plateNumberLabel.innerText = i.plateNum;
+                })
+            });
+        }
+    </script>
   </head>
-  <body>
+  <body onload="onLoad()">
       <div class="page">
         <header>
             <h1 ><a href="index.html">H&#220;ver</a></h1>
@@ -33,39 +75,47 @@
         </header>
         <div class="body">
             <div class="uname">
-                <label>Username:</label>
+                <label><u><b>Username:</b></u></label>
                 <label id="username" name="username"></label>
             </div><br>
             <div class="fname">
-                <label>First Name:</label>
+                <label><u><b>First Name:</b></u></label>
                 <label id="firstName" name="firstName"></label>
-                <label>Last Name:</label>
+                <label><u><b>Last Name:</b></u></label>
                 <label id="lastName" name="lastName"></label>
             </div>
             <div class="staddr">
-                <label>Street Address:</label>
+                <label><u><b>Street Address:</b></u></label>
                 <label id="staddr" name="staddr"></label>
             </div><br>
             <div class="oaddr">
-                <label>City: </label>
+                <label><u><b>City:</b></u> </label>
                 <label id="city" name="city"></label>
-                <label>State:</label>
+                <label><u><b>State:</u></b></label>
                 <label id="state" name="state"></label>
-                <label>Zip Code:</label>
+                <label><u><b>Zip Code:</b></u></label>
                 <label id="zipCode" name="zipCode"></label>
             </div><br>
             <div class="pnum">
-                <label>Phone Number:</label>
+                <label><u><b>Phone Number:</b></u></label>
                 <label id="phoneNumber" name="phoneNumber"></label>
             </div><br>
             <div class="cardnum">
-                <label>Card Number:</label>
+                <label><u><b>Card Number:</b></u></label>
                 <label id="cardNumber" name="cardNumber"></label>
             </div><br>
             <div class="secnum">
-                <label>Security Number:</label>
+                <label><u><b>Security Number:</u></label>
                 <label id="securityNumber" name="securityNumber"></label>
-            </div>            
+            </div>
+            <div class="ln">
+                <label><u><b>License Number:</b></u></label>
+                <label id="licenseNumber" name="licenseNumber"></label>
+            </div><br>
+            <div class="pn">
+                <label><u><b>Plate Number:</b></u></label>
+                <label id="plateNumber" name="plateNumber"></label>
+            </div>                         
         </div>
     </div>
   </body>
