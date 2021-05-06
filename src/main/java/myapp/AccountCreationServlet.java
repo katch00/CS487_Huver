@@ -94,6 +94,8 @@ public class AccountCreationServlet extends HttpServlet {
         datastore.put(driverEntity);
     }
 
+    System.out.println("Account created.");
+
     resp.sendRedirect("/index.html");
   }
 
