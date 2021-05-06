@@ -41,6 +41,17 @@ function createDriverElement(driver) {
   return driverElement;
 }
 
+function setRequest(cust, cost, time)
+{
+    var customerLabel = document.getElementById('customer');
+    customerLabel.innerText = cust;
+    var timeLabel = document.getElementById('time');
+    timeLabel.innerText = time + ' mins';
+    var costLabel = document.getElementById('pay');
+    costLabel.innerText = ' $' + cost;
+
+}
+
 function createCost(time){
   var cost = (1.5 + Math.random()) * time;
   console.log(cost);

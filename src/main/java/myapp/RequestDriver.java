@@ -53,9 +53,8 @@ public class RequestDriver extends HttpServlet {
 
             datastore.put(reqEntity);
         }
-        System.out.println("servlet called");
+        
         resp.sendRedirect("/custWaitingPage.html?driverName="+driverName+"&custName="+username);
-        //resp.sendRedirect("/showDrivers.html?city=" + city + "&numPass=" + numPass);
     }
 
     @Override
@@ -79,7 +78,11 @@ public class RequestDriver extends HttpServlet {
 
         if(isAccepted.equals("true"))
         {
-            resp.sendRedirect("/index.html");
+            resp.sendRedirect("/DriveInProgress.html?user=cust");
+        }
+        else if(isAccepted.equals("rejected"))
+        {
+            resp.sendRedirect("/custPageStart.html");
         }
 
     }
