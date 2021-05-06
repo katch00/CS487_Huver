@@ -43,7 +43,7 @@
                 <form class="pay" method="POST" action="/submitReview">
                     <label class="tip_title">Tip Amount:</label><br>
                     <input type="hidden" id="drivName" name="drivName">
-                    <input type="number" step="any" name="tip" id="tip" class="tip" placeholder="$##.##"><br>
+                    <input type="number" step="any" name="tip" id="tip" class="tip" placeholder="$5.00" value=0><br>
                     <label class="rate_title">Rating:</label><br>
                     <div class="rate_box">
                     <div class="rate">
@@ -55,7 +55,7 @@
                     </div>
                     </div><br>
                     <br><label class="feed_title">Provide Feedback(optional):</label><br>
-                    <textarea placeholder="Provide feedback here" rows="5" cols="60" id="desc" name="desc"></textarea><br>                    
+                    <textarea placeholder="Provide feedback here" rows="5" cols="60" id="desc" name="desc" value="no comment"></textarea><br>                    
                     <div class="submit_bttn">
                         <input class="sub_bttn" style="background-color: purple; color: white; width: 100px; margin-left: 170px; margin-top: 10px; margin-bottom: 50px;" type="submit" value="Submit">
                     </div>                    
