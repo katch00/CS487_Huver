@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/login_css.css" />
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="script.js"></script>
     <style type="text/css">
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -158,17 +159,40 @@
             })
         }, 3000);
     </script>
+    <script>
+      async function onLoad(){
+        var username = await checkUsername();
+            console.log(username + "1");                          
+            if(username != null && username !== ""){
+                console.log(username + "2");  
+                document.getElementById('login').style.display = "none";
+                document.getElementById('signup').style.display = "none";
+                document.getElementById('signout').style.display = "";
+            }
+            //Makes the customer or driver pages visible if they are logged in.
+            var userType = await checkUserType();
+            if(userType === "Customer"){
+                document.getElementById('drivers').style.display = "";
+                document.getElementById('account').style.display = "";
+            } else if(userType === "Driver"){
+                document.getElementById('waitRoom').style.display = "";
+                document.getElementById('account').style.display = "";
+            }
+        }
+    </script>
   </head>
-  <body>
+  <body onload="onLoad()">
     <div class="page">
         <header>
             <h1 class="pagetitle"><a href="index.html">H&#220;ver</a></h1>
             <nav class="navbar">
                 <ul>
-                    <li class="driverslink"><a href="custPageStart.html">Drivers</a></li>
-                    <li class="wait_link"><a href="driverPageStart.html">Waiting Room</a> </li>
-                    <li class="loginlink"><a href="login.html">Log in</a></li>
-                    <li class="signuplink"><a href="signup.html">Sign up</a></li>
+                    <li id="drivers" style="display:none;" class="driverslink"><a href="custPageStart.html">Drivers</a></li>
+                    <li id="waitRoom" style="display:none;" class="wait_link"><a href="driverPageStart.html">Waiting Room</a> </li>
+                    <li id="account" style="display:none;" class="account"><a href="accountPage.html">Account Info</a></li>
+                    <li id="login" class="loginlink"><a href="login.html">Log in</a></li>
+                    <li id="signup" class="signuplink"><a href="signup.html">Sign up</a></li>
+                    <li id="signout" style="display:none;" class="signout"><a href="/signout">Sign out</a></li>
                 </ul>
             </nav>
         </header>
