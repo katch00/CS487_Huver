@@ -68,6 +68,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>getUserInfo</servlet-name>
+        <servlet-class>myapp.getUserInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getUserInfo</servlet-name>
+        <url-pattern>/getUserInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>sendAddress</servlet-name>
         <servlet-class>myapp.SendAddress</servlet-class>
     </servlet>
