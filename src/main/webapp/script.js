@@ -77,6 +77,7 @@ function createfavElement(fav) {
   favElement.appendChild(breakEl);
   favElement.appendChild(stateElement);
   return favElement;
+}
 
 function setRequest(cust, cost, time)
 {
