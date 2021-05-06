@@ -27,7 +27,13 @@ li.signuplink {
 
 li.driverslink {
     color: black;
-    padding-right:1000px;
+    padding-right:20px;
+}
+li#account.account {
+    padding-right: 20px;
+}
+li.wait_link {
+    padding-right:20px;
 }
 
 /*body css*/
