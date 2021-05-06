@@ -3,6 +3,16 @@ package main.java.myapp;
 import java.io.IOException;
 import javax.servlet.http.*;
 
+import com.mailjet.client.errors.MailjetException;
+import com.mailjet.client.errors.MailjetSocketTimeoutException;
+import com.mailjet.client.MailjetClient;
+import com.mailjet.client.MailjetRequest;
+import com.mailjet.client.MailjetResponse;
+import com.mailjet.client.ClientOptions;
+import com.mailjet.client.resource.Emailv31;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -53,6 +63,16 @@ public class DriverResponse extends HttpServlet
                 double money = (double) newentity.getProperty("money");
                 double newWallet = money - cost;
                 newentity.setProperty("money", newWallet);
+                String message = "Thank you for your purchase. Your total today was: " + cost;
+                String email = (String) newentity.getProperty("phoneNumber");
+                try
+                {
+                    sendEmail(message, email);
+                }
+                catch(Exception e)
+                {
+                    System.err.println("Email could not be sent");
+                }
                 datastore.put(newentity);
             }
             Filter newdriverFilter = new FilterPredicate("firstName", FilterOperator.EQUAL, driverName);
@@ -84,11 +104,35 @@ public class DriverResponse extends HttpServlet
     }
 
     private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-    String value = request.getParameter(name);
-    //System.out.print(name + value);
-    if (value == null) {
-      return defaultValue;
+        String value = request.getParameter(name);
+        if (value == null) {
+            return defaultValue;
+        }
+        return value;
     }
-    return value;
-  }
+
+    public static void sendEmail(String message, String userEmail) throws MailjetException, MailjetSocketTimeoutException {
+        MailjetClient client;
+        MailjetRequest request;
+        MailjetResponse response;
+        client = new MailjetClient(Key.API_KEY, Key.API_SECRET, new ClientOptions("v3.1"));
+        request = new MailjetRequest(Emailv31.resource)
+        .property(Emailv31.MESSAGES, new JSONArray()
+        .put(new JSONObject()
+        .put(Emailv31.Message.FROM, new JSONObject()
+        .put("Email", "nstroupe@hawk.iit.edu")
+        .put("Name", "Huver"))
+        .put(Emailv31.Message.TO, new JSONArray()
+        .put(new JSONObject()
+        .put("Email", userEmail)
+        .put("Name", "Student"))) 
+        .put(Emailv31.Message.SUBJECT, "Thank you for your purchase!")
+        .put(Emailv31.Message.TEXTPART, "")
+        .put(Emailv31.Message.HTMLPART, message)
+        .put(Emailv31.Message.CUSTOMID, "AppGettingStartedTest")));
+        response = client.post(request);
+        System.out.println(response.getStatus());
+        System.out.println(response.getData());
+        
+    }
 }
