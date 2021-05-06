@@ -8,10 +8,15 @@ function getDrivers(city, numPass) {
 
 }
 
-async function checkUser(){
+async function checkUsername(){
     const username = await fetch('/sessionLogin', {method: 'GET'}).then(response => response.json()).then((data)=> {result = data; console.log(result); return result});
-    console.log(username + "kalp2");
     return username;
+}
+
+async function checkUserType(){
+    const userType = await fetch('/userType', {method: 'GET'}).then(response => response.json()).then((data)=> {result = data; console.log(result); return result});
+    console.log(userType + "kalp2");
+    return userType;
 }
 
 function sendRequest(name, cost) {

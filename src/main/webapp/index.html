@@ -16,32 +16,34 @@
             <h1 ><a href="index.html">H&#220;ver</a></h1>
             <nav class="navbar">
                 <ul>
-                    <li class="driverslink"><a href="custPageStart.html">Drivers</a></li>
-                    <li class="wait_link"><a href="driverPageStart.html">Waiting Room</a> </li>
+                    <li id="drivers" style="display:none;" class="driverslink"><a href="custPageStart.html">Drivers</a></li>
+                    <li id="waitRoom" style="display:none;" class="wait_link"><a href="driverPageStart.html">Waiting Room</a> </li>
                     <li id="login" class="loginlink"><a href="login.html">Log in</a></li>
                     <li id="signup" class="signuplink"><a href="signup.html">Sign up</a></li>
                     <li id="signout" style="display:none;" class="signout"><a href="/signout">Sign out</a></li>
                     <script>
-                        const queryString = window.location.search;
-                        const urlParams = new URLSearchParams(queryString);
-                        const username = urlParams.get('username');
-                        console.log(urlParams.get('username'));
-
                         async function onLoad(){
-                          var username = await checkUser();
+                          var username = await checkUsername();
                           //console.log(result);
                           //alert(result + "kalp\n");
                           //if(data){
                           //}
-                          console.log(username);                          
+                          //console.log(username);                          
                           if(username == null || username === ""){
                             var text = "false";
-                            console.log("Goal: " + text);
+                            //console.log("Goal: " + text);
                           }else{
-                            console.log("Goal: true");
+                            //console.log("Goal: true");
                             document.getElementById('login').style.display = "none";
                             document.getElementById('signup').style.display = "none";
                             document.getElementById('signout').style.display = "";
+                          }
+                          //Makes the customer or driver pages visible if they are logged in.
+                          var userType = await checkUserType();
+                          if(userType === "Customer"){
+                            document.getElementById('drivers').style.display = "";
+                          } else if(userType === "Driver"){
+                            document.getElementById('waitRoom').style.display = "";
                           }
                         }
                     </script>
