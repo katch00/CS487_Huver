@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
+import java.util.Random;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -47,6 +48,11 @@ public class CreateUser extends HttpServlet {
         if(type == "customer")
         {
             String creditCardNum = getParameter(request, "cardNum", "");
+
+            Random rand = new Random();
+            double money = Math.floor(rand.nextDouble() * 10000)/100;
+            System.out.println("Money: " + money);
+
             Entity custEntity = new Entity("customer");
             custEntity.setProperty("firstName", firstName);
             custEntity.setProperty("lastName", lastName);
@@ -54,6 +60,7 @@ public class CreateUser extends HttpServlet {
             custEntity.setProperty("phoneNumber", number);
             custEntity.setProperty("address", address);
             custEntity.setProperty("password", password);
+            custEntity.setProperty("wallet", money);
             datastore.put(custEntity);
         }
         else if(type == "driver")

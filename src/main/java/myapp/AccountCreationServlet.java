@@ -20,6 +20,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Random;
 
 import com.google.appengine.repackaged.com.google.protobuf.Timestamp;
 import com.google.appengine.api.datastore.DatastoreService;
@@ -49,6 +50,10 @@ public class AccountCreationServlet extends HttpServlet {
 
     if(user.equals("Customer")){
         Entity custEntity = new Entity("Customer");
+
+        Random rand = new Random();
+        double money = Math.floor(rand.nextDouble() * 10000)/100;
+        System.out.println("Money: $" + money);
 
         String cardNumber = getParameter(req, "Card Number", "");
         String securityNumber = getParameter(req, "Security Number", "");
