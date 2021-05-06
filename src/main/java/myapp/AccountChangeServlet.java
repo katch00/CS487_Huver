@@ -52,7 +52,7 @@ public class AccountChangeServlet extends HttpServlet {
                 entity.setProperty("address", address);
             }  
             if(!city.equals("")){
-                entity.setProperty("city", address);
+                entity.setProperty("city", city);
             }
             if(!zipCode.equals("")){
                 entity.setProperty("zipCode", zipCode);
