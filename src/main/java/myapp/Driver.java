@@ -14,6 +14,9 @@ public class Driver {
     String password;
     String license;
     String plateNum;
+    int overallRating;
+    String isOnline;
+    String isAvailable;
     String numPassengers;
 
     String type = "driver";
@@ -35,7 +38,9 @@ public class Driver {
         this.license = license;
         this.plateNum = plateNum;
         this.numPassengers = numPassengers;
-
+        this.overallRating = 0;
+        this.isOnline = "false";
+        this.isAvailable = "false";
     }
 
 }
