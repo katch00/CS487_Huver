@@ -47,13 +47,20 @@ public class DriverResponse extends HttpServlet
         if(driverResponse.equals("accepted"))
         {
             Filter custNameFilter = new FilterPredicate("username", FilterOperator.EQUAL, custName);
-            System.out.println(custName);
             Query newquery = new Query("Customer").setFilter(custNameFilter);
             PreparedQuery newresults = datastore.prepare(newquery);
             for (Entity newentity : newresults.asIterable()) {
                 double money = (double) newentity.getProperty("money");
                 double newWallet = money - cost;
-                System.out.println("new amount" + newWallet);
+                newentity.setProperty("money", newWallet);
+                datastore.put(newentity);
+            }
+            Filter newdriverFilter = new FilterPredicate("firstName", FilterOperator.EQUAL, driverName);
+            Query newerquery = new Query("Driver").setFilter(newdriverFilter);
+            PreparedQuery newerresults = datastore.prepare(newerquery);
+            for (Entity newentity : newerresults.asIterable()) {
+                double money = (double) newentity.getProperty("money");
+                double newWallet = money + cost;
                 newentity.setProperty("money", newWallet);
                 datastore.put(newentity);
             }
