@@ -8,6 +8,14 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/login_css.css" />
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <style type="text/css">
+      .center {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
       <div class="page">
@@ -22,20 +30,10 @@
                 </ul>
             </nav>
         </header>
-        <div class="body">
-            <h2 class="logtitle">Log In</h2>
-            <form class="login" method="POST" action="/sessionLogin">
-                <input type="radio" id="Customer" name="role" value="Customer">
-                <label for="Customer">Customer</label><br>
-                <input type="radio" id="Driver" name="role" value="Driver">
-                <label for="Driver">Driver</label><br>
-                <label for="username">Username:</label><br>
-                <input type="text" id="username" name="username"><br>
-                <label for="pwd">Password:</label><br>
-                <input type="password" id="pwd" name="pwd">
-                <button style="background-color: purple; color: white; width: 100px; position: relative; margin-top: -15px; margin-bottom: 50px;">Submit</button>
-            </form>
-                            
+        <div class="body center">
+            <h2 class="logtitle">Your Ride is Complete!</h2>
+            <br>
+            <input style="background-color: purple; color: white;" type="button" onclick="location.href='/driverPageStart.html';" value="Return to waiting room" />   
         </div>
         </div>
   </body>

@@ -37,8 +37,8 @@
             </nav>
         </header>
         <div class="body">
-            <h2 class="sigtitle">Sign up</h2>
-            <form class="signup" method="POST" action="/accountCreation">
+            <h2 class="sigtitle">Info Entry</h2>
+            <form class="signup" method="POST" action="/accountChange">
                 <div class="row">
                     <div class="column" style="padding-left: 240px;">
                         <div class="nam_en">
@@ -56,6 +56,16 @@
                             <label>Street Address</label><br>
                             <input type="text" name="Address" class="boxes"/>
                         </div>
+                    </div>
+                    <div class="column">
+                        <div class="us_pa">
+                            <label class="up_l">Username</label><br>                       
+                            <input type="text" name="Username"/>
+                        </div>
+                        <div class="us_pa">
+                            <label class="up_l">Password</label><br>
+                            <input type="password" name="Password"/>
+                        </div><br>
                         <div class="city_zip_entry">
                             <label class="c_z_en">City</label><br>
                             <input type="text" name="City"/>
@@ -118,43 +128,8 @@
                                 <option value="WV">West Virginia</option>
                                 <option value="WI">Wisconsin</option>
                                 <option value="WY">Wyoming</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="us_pa">
-                            <label class="up_l">Username</label><br>                       
-                            <input type="text" name="Username"/>
-                        </div>
-                        <div class="us_pa">
-                            <label class="up_l">Password</label><br>
-                            <input type="password" name="Password"/>
-                        </div>
-                        <div class="mdy_entry" style="padding-top: 10px; padding-bottom: 24px;">
-                            <label for="datemin">Birth Date</label><br>
-                            <input type="date" class="boxes" id="datemin" name="datemin" min="1900-01-02">
-                        </div>  
-                        <div class="user_select">
-                            <label style="padding-top: 10px; padding-bottom: 24px;">User Type</label><br>
-                            <input type="radio" class="boxes" id="Customer" name="user" onclick="changeContent1();" value="Customer">
-                            <label for="Customer">Customer</label>
-                            <input type="radio" class="boxes" id="Driver" name="user" onclick="changeContent2();" value="Driver">
-                            <label for="Driver">Driver</label>
-                        </div>
-                        <div id="show1" class="hide">
-                            <label class="card_entry" style="padding-top: 10px;" placeholder="####-####-####-####">Card Number</label><br>
-                            <input type="text" name="Card Number" class="boxes" /><br>
-                            <label class="code_entry" style="padding-top: 10px;" placeholder="###">Security Number</label><br>
-                            <input type="text" name="Security Number" class="boxes" /><br>
-                        </div>
-                        <div id="show2" class="hide">
-                            <label class="dln_entry" style="padding-top: 10px;">Drivers License Number</label><br>
-                            <input type="text" name="Drivers License Number" class="boxes" /><br>
-                            <label class="lpn_entry" style="padding-top: 10px;">License Plate Number</label><br>
-                            <input type="text" name="License Plate Number" class="boxes" /><br>
-                            <label for="mnp_entry" style="padding-top: 10px;">Max Number of Passengers</label>
-                            <input type="number" id="mnp_entry" name="mnp_entry" min="1" max="10">
-                        </div>                                      
+                            </select>  
+                        </div>             
                     </div>
                 </div>
                 <div class="submit_bttn">
@@ -164,15 +139,5 @@
         </div>
         </div>
   </body>
-  <script>
-    function changeContent1() {
-        document.getElementById("show1").classList.remove("hide");
-        document.getElementById("show2").classList.add("hide");
-    }
 
-    function changeContent2() {
-        document.getElementById("show1").classList.add("hide");
-        document.getElementById("show2").classList.remove("hide");
-    }
-  </script>
 </html>

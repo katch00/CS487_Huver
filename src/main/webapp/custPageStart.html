@@ -181,14 +181,16 @@
             <div class="column">
                 <h3 class="title">Desired Location:</h3>
                 <form  method="POST" action="/sendAddress">
-                    <label for="staddr">Street Address:</label><br>
-                    <input type="text" id="staddr" name="staddr" placeholder="123 Rainbow Rd"><br>
                     <div class="row">
                         <div class="column">
+                            <label for="staddr">Street Address:</label><br>
+                            <input type="text" id="staddr" name="staddr" placeholder="123 Rainbow Rd"><br>
                             <label for="city">City:</label><br>
                             <input type="text" id="city" name="city" placeholder="Springfield"><br><br>
                         </div>
                         <div class="column">
+                            <label for="state">State:</label><br>
+                            <input type="text" id="state" name="state" placeholder="Ex: IL"><br>
                             <label for="zip">Zip Code:</label><br>
                             <input type="text" id="zip" name="zip" placeholder="12345"><br><br>
                         </div>
@@ -196,9 +198,9 @@
                     <h3 class="rideInfo">Ride Information:</h3>
                     <label for="numPass">Number of Passengers:</label><br>
                     <input type="text" id="numPass" name="numPass" placeholder="1"><br><br>
-                    <input type="radio" id="rideShare" name="rideShare" value="yes">
+                    <input type="checkbox" id="rideShare" name="rideShare" value="yes">
                     <label for="rideShare">Rideshare</label><br> 
-                    <input type="radio" id="isFav" name="isFav" value="yes">
+                    <input type="checkbox" id="isFav" name="isFav" value="yes">
                     <label for="rideShare">Add to favorites</label><br> 
                     <input type="submit" value="Submit">
                 </form>
