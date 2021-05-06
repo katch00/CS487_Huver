@@ -30,6 +30,15 @@
         <servlet-name>sessionLogin</servlet-name>
         <url-pattern>/sessionLogin</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>signout</servlet-name>
+        <servlet-class>myapp.SignoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>signout</servlet-name>
+        <url-pattern>/signout</url-pattern>
+    </servlet-mapping>
     
     <servlet>
         <servlet-name>getDrivers</servlet-name>
