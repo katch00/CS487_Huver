@@ -49,6 +49,15 @@
         <url-pattern>/getDrivers</url-pattern>
     </servlet-mapping>
 
+     <servlet>
+        <servlet-name>getFavorites</servlet-name>
+        <servlet-class>myapp.GetFavorites</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getFavorites</servlet-name>
+        <url-pattern>/getFavorites</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>sendAddress</servlet-name>
         <servlet-class>myapp.SendAddress</servlet-class>

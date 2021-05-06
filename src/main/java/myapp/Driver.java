@@ -14,7 +14,7 @@ public class Driver {
     String password;
     String license;
     String plateNum;
-    int overallRating;
+    long overallRating;
     String isOnline;
     String isAvailable;
     String numPassengers;
@@ -23,7 +23,7 @@ public class Driver {
 
     public Driver(String firstName, String lastName, String username, String birthdate, String number,
            String address, String city, String zipCode, String state, String password, String license, String plateNum, String numPassengers,
-           int overallRating, String isOnline, String isAvailable)
+           long overallRating, String isOnline, String isAvailable)
     {
         this.firstName = firstName;
         this.lastName = lastName;

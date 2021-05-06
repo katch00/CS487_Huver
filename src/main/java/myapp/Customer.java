@@ -16,12 +16,12 @@ public class Customer {
     String password;
     String cardNo;
     String securityNo;
-    int overallRating;
+    long overallRating;
     
     String type = "customer";
 
     public Customer(String firstName, String lastName, String username, int birthday, int birthmonth, int birthyear, String number,
-           String address, String city, String zipCode, String state, String password, String cardNo, String securityNo, int overallRating)
+           String address, String city, String zipCode, String state, String password, String cardNo, String securityNo, long overallRating)
     {
         this.firstName = firstName;
         this.lastName = lastName;

@@ -18,6 +18,7 @@ public class SendAddress extends HttpServlet {
         String staddr = getParameter(req, "staddr", "");
         String city = getParameter(req, "city", "");
         String zip = getParameter(req, "zip", "");
+        String state = getParameter(req, "state", "");
         String numPass = getParameter(req, "numPass", "");
         String isFavorite = getParameter(req, "isFav", "no");
 
@@ -42,6 +43,7 @@ public class SendAddress extends HttpServlet {
                 favEntity.setProperty("staddr", staddr);
                 favEntity.setProperty("city", city);
                 favEntity.setProperty("zip", zip);
+                favEntity.setProperty("state",state);
                 datastore.put(favEntity);
             }
 
