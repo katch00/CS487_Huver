@@ -31,6 +31,7 @@ import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.gson.Gson;
 
 public class SessionLoginServlet extends HttpServlet {
     @Override
@@ -40,10 +41,30 @@ public class SessionLoginServlet extends HttpServlet {
             HttpSession session=req.getSession(false);
             String username = (String) session.getAttribute("username");
             System.out.println("Name: " + username);
+
+            Gson gson = new Gson();
+            String json = gson.toJson(username);
+
+            resp.setContentType("application/json;");
+            System.out.println(json + "kalp2");
+            resp.getWriter().println(json);
+            /*
+            if(username == null || username.equals("")){
+                String text = "false";
+                System.out.println("Goal: " + text);
+                resp.setContentType("text/plain"); 
+                resp.setCharacterEncoding("UTF-8"); 
+                resp.getWriter().println(text);
+            }
+            else{
+                System.out.println("Goal: true");
+                resp.setContentType("text/plain");
+                resp.getWriter().print(true);
+            }*/
         }catch(Exception exp){
             System.out.println(exp);
         }
-        resp.sendRedirect("/index.html");
+        //resp.sendRedirect("/index.html");
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -102,5 +123,6 @@ public class SessionLoginServlet extends HttpServlet {
         }
         return value;
     }
+
 }
 

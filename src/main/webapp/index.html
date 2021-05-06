@@ -8,8 +8,9 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/homepage_css.css" />
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="onLoad()">
       <div class="page">
         <header>
             <h1 ><a href="index.html">H&#220;ver</a></h1>
@@ -21,12 +22,27 @@
                     <li id="signup" class="signuplink"><a href="signup.html">Sign up</a></li>
                     <li id="signout" style="display:none;" class="signout"><a href="/signout">Sign out</a></li>
                     <script>
-                        var username = '<%= Session["username"]%>';
-                        alert(username + "kalp\n");
-                        if(username){
-                          document.getElementById('login').style.display = "none";
-                          document.getElementById('signup').style.display = "none";
-                          document.getElementById('signout').style.display = "";
+                        const queryString = window.location.search;
+                        const urlParams = new URLSearchParams(queryString);
+                        const username = urlParams.get('username');
+                        console.log(urlParams.get('username'));
+
+                        async function onLoad(){
+                          var username = await checkUser();
+                          //console.log(result);
+                          //alert(result + "kalp\n");
+                          //if(data){
+                          //}
+                          console.log(username);                          
+                          if(username == null || username === ""){
+                            var text = "false";
+                            console.log("Goal: " + text);
+                          }else{
+                            console.log("Goal: true");
+                            document.getElementById('login').style.display = "none";
+                            document.getElementById('signup').style.display = "none";
+                            document.getElementById('signout').style.display = "";
+                          }
                         }
                     </script>
                 </ul>

@@ -8,6 +8,12 @@ function getDrivers(city, numPass) {
 
 }
 
+async function checkUser(){
+    const username = await fetch('/sessionLogin', {method: 'GET'}).then(response => response.json()).then((data)=> {result = data; console.log(result); return result});
+    console.log(username + "kalp2");
+    return username;
+}
+
 function sendRequest(name, cost) {
     fetch(`/requestDriver?driverName=${name}&cost=${cost}`);
 }
