@@ -59,12 +59,30 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>sendAddress</servlet-name>
+        <servlet-class>myapp.SendAddress</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sendAddress</servlet-name>
+        <url-pattern>/sendAddress</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>requestDriver</servlet-name>
         <servlet-class>main.java.myapp.RequestDriver</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>requestDriver</servlet-name>
         <url-pattern>/requestDriver</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>checkRequests</servlet-name>
+        <servlet-class>main.java.myapp.CheckRequests</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>checkRequests</servlet-name>
+        <url-pattern>/checkRequests</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

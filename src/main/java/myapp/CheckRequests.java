@@ -1,28 +1,48 @@
 package main.java.myapp;
 
+import javax.servlet.http.*;
+import java.io.IOException;
+
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
+
 public class CheckRequests extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String driverName = getParameter(req, "driverName", "");
-        String custName = getParameter(req, "custName", "");
+        String name = null;
+        try{
+            HttpSession session=req.getSession(false);
+                
+            name = (String) session.getAttribute("name");
+        }catch(Exception exp){
+            System.out.println(exp);
+            resp.sendRedirect("/index.html");
+        }
 
-        Filter driverFilter = new FilterPredicate("driver", FilterOperator.EQUAL, driverName);
-        Filter custFilter = new FilterPredicate("cust", FilterOperator.EQUAL, custName);
+        Filter driverFilter = new FilterPredicate("driver", FilterOperator.EQUAL, name);
 
-        Filter validFilter = CompositeFilterOperator.and(driverFilter, custFilter);
-
-        Query query = new Query("Requests").setFilter(validFilter);
+        Query query = new Query("Requests").setFilter(driverFilter);
    
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         PreparedQuery results = datastore.prepare(query);
-        String isAccepted = "false";
+        String isRequested = "false";
         for (Entity entity : results.asIterable()) {
-            isAccepted = (String) entity.getProperty("isAccepted");
-        }
-
-        if(isAccepted.equals("true"))
-        {
-            resp.sendRedirect("/index.html");
+            isRequested = (String) entity.getProperty("isRequested");
+            System.out.println(isRequested);
+            if(isRequested.equals("true"))
+            {
+                String cost = (String) entity.getProperty("cost");
+                String time = (String) entity.getProperty("time");
+                String cust = (String) entity.getProperty("cust");
+                resp.sendRedirect("/requestResponse.html?cust="+cust+"&cost="+cost+"&time="+time);
+            }
         }
 
     }
