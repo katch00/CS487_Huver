@@ -56,6 +56,29 @@
                     plateNumberLabel.innerText = i.plateNum;
                 })
             });
+
+            
+            var username = await checkUsername();
+            console.log(username + "1");                          
+            if(username != null && username !== ""){
+                console.log(username + "2");  
+                document.getElementById('login').style.display = "none";
+                document.getElementById('signup').style.display = "none";
+                document.getElementById('signout').style.display = "";
+            }
+            //Makes the customer or driver pages visible if they are logged in.
+            var userType = await checkUserType();
+            if(userType === "Customer"){
+                document.getElementById('drivers').style.display = "";
+                document.getElementById('account').style.display = "";
+                document.getElementById('cardnum').style.display = "";
+                document.getElementById('secnum').style.display = "";
+            } else if(userType === "Driver"){
+                document.getElementById('waitRoom').style.display = "";
+                document.getElementById('account').style.display = "";
+                document.getElementById('ln').style.display = "";
+                document.getElementById('pn').style.display = "";
+            } 
         }
     </script>
   </head>
@@ -65,11 +88,12 @@
             <h1 ><a href="index.html">H&#220;ver</a></h1>
             <nav class="navbar">
                 <ul>
-                    <li class="driverslink"><a href="custPageStart.html">Drivers</a></li>
-                    <li class="wait_link"><a href="driverPageStart.html">Waiting Room</a> </li>
-                    <li class="loginlink"><a href="login.html">Log in</a></li>
-                    <li class="signuplink"><a href="signup.html">Sign up</a></li>
-                    <li class="signout"><a href="/signout">Sign out</a></li>
+                    <li id="drivers" style="display:none;" class="driverslink"><a href="custPageStart.html">Drivers</a></li>
+                    <li id="waitRoom" style="display:none;" class="wait_link"><a href="driverPageStart.html">Waiting Room</a> </li>
+                    <li id="account" style="display:none;" class="account"><a href="accountPage.html">Account Info</a></li>
+                    <li id="login" class="loginlink"><a href="login.html">Log in</a></li>
+                    <li id="signup" class="signuplink"><a href="signup.html">Sign up</a></li>
+                    <li id="signout" style="display:none;" class="signout"><a href="/signout">Sign out</a></li>
                 </ul>
             </nav>
         </header>
@@ -100,19 +124,19 @@
                 <label><u><b>Phone Number:</b></u></label>
                 <label id="phoneNumber" name="phoneNumber"></label>
             </div><br>
-            <div class="cardnum">
+            <div id="cardnum" class="cardnum" style="display:none;">
                 <label><u><b>Card Number:</b></u></label>
                 <label id="cardNumber" name="cardNumber"></label>
             </div><br>
-            <div class="secnum">
+            <div id="secnum" class="secnum" style="display:none;">
                 <label><u><b>Security Number:</u></label>
                 <label id="securityNumber" name="securityNumber"></label>
             </div>
-            <div class="ln">
+            <div id="ln" class="ln" style="display:none;">
                 <label><u><b>License Number:</b></u></label>
                 <label id="licenseNumber" name="licenseNumber"></label>
             </div><br>
-            <div class="pn">
+            <div id="pn" class="pn" style="display:none;">
                 <label><u><b>Plate Number:</b></u></label>
                 <label id="plateNumber" name="plateNumber"></label>
             </div>                         
