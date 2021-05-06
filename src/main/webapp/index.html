@@ -17,9 +17,18 @@
                 <ul>
                     <li class="driverslink"><a href="custPageStart.html">Drivers</a></li>
                     <li class="wait_link"><a href="driverPageStart.html">Waiting Room</a> </li>
-                    <li class="loginlink"><a href="login.html">Log in</a></li>
-                    <li class="signuplink"><a href="signup.html">Sign up</a></li>
-                    <li class="signout"><a href="/signout">Sign out</a></li>
+                    <li id="login" class="loginlink"><a href="login.html">Log in</a></li>
+                    <li id="signup" class="signuplink"><a href="signup.html">Sign up</a></li>
+                    <li id="signout" style="display:none;" class="signout"><a href="/signout">Sign out</a></li>
+                    <script>
+                        var username = '<%= Session["username"]%>';
+                        alert(username + "kalp\n");
+                        if(username){
+                          document.getElementById('login').style.display = "none";
+                          document.getElementById('signup').style.display = "none";
+                          document.getElementById('signout').style.display = "";
+                        }
+                    </script>
                 </ul>
             </nav>
         </header>
