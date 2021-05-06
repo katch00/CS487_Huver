@@ -33,68 +33,73 @@ import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Query.SortDirection;
 
 public class SessionLoginServlet extends HttpServlet {
-  @Override
-public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     
-    try{
-      HttpSession session=req.getSession(false);
-      String username = (String) session.getAttribute("username");
-      System.out.println("Name: " + username);
-  }catch(Exception exp){
-      System.out.println(exp);
-   }
-   resp.sendRedirect("/index.html");
-  }
+        try{
+            HttpSession session=req.getSession(false);
+            String username = (String) session.getAttribute("username");
+            System.out.println("Name: " + username);
+        }catch(Exception exp){
+            System.out.println(exp);
+        }
+        resp.sendRedirect("/index.html");
+    }
 
-  public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    String username = getParameter(req, "username", "");
-    String password = getParameter(req, "pwd", "");
-    String role = getParameter(req, "role", "");
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String username = getParameter(req, "username", "");
+        String password = getParameter(req, "pwd", "");
+        String role = getParameter(req, "role", "");
     
-    String kind;
-    if(role.equals("Customer")){
-        kind = "Customer";
+        String kind;
+        if(role.equals("Customer")){
+            kind = "Customer";
+        }
+        else{
+            kind = "Driver";
+        }
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        Filter correctUsername = new FilterPredicate("username", FilterOperator.EQUAL, username);
+        Query query = new Query(kind).setFilter(correctUsername);
+        PreparedQuery results = datastore.prepare(query);
+        boolean valid = false;
+        for (Entity entity : results.asIterable()) {
+            if(entity.getProperty("password").equals(password)){
+                System.out.println("Valid account");
+                valid = true;
+                if(kind.equals("Driver"))
+                {
+                    entity.setProperty("isAvailable", "true");
+                    entity.setProperty("isOnline", "true");
+                }
+            }      
+        }
+        if(!valid){
+            System.out.println("Invalid account");
+            PrintWriter pwriter = resp.getWriter();  
+            resp.setContentType("text/html");  
+            pwriter.print("<script type=\"text/javascript\">");  
+            pwriter.print("alert('Invalid username or password');");  
+            pwriter.print("</script>");
+            //pwriter.print("<a href='/index.html'>Return to Login</a>");
+            pwriter.print("<meta http-equiv =\"refresh\" content = \"0; url=/login.html\">");
+            pwriter.close();
+        }
+        else{
+            HttpSession session = req.getSession();
+            session.setAttribute("username", username);
+            session.setAttribute("userType", kind);
+            System.out.println("Username: " + username);    
+            resp.sendRedirect("/index.html");
+        }
     }
-    else{
-        kind = "Driver";
-    }
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    Filter correctUsername = new FilterPredicate("username", FilterOperator.EQUAL, username);
-    Query query = new Query(kind).setFilter(correctUsername);
-    PreparedQuery results = datastore.prepare(query);
-    boolean valid = false;
-    for (Entity entity : results.asIterable()) {
-      if(entity.getProperty("password").equals(password)){
-        System.out.println("Valid account");
-        valid = true;
-      }
-    }
-    if(!valid){
-        System.out.println("Invalid account");
-        PrintWriter pwriter = resp.getWriter();  
-        resp.setContentType("text/html");  
-        pwriter.print("<script type=\"text/javascript\">");  
-        pwriter.print("alert('Invalid username or password');");  
-        pwriter.print("</script>");
-        //pwriter.print("<a href='/index.html'>Return to Login</a>");
-        pwriter.print("<meta http-equiv =\"refresh\" content = \"0; url=/login.html\">");
-        pwriter.close();
-    }
-    else{
-      HttpSession session = req.getSession();
-      session.setAttribute("username", username);
-      session.setAttribute("userType", kind);
-      System.out.println("Username: " + username);    
-      resp.sendRedirect("/index.html");
-    }
-  }
 
-  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-    String value = request.getParameter(name);
-    //System.out.print(name + value);
-    if (value == null) {
-      return defaultValue;
+    private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+        String value = request.getParameter(name);
+        //System.out.print(name + value);
+        if (value == null) {
+            return defaultValue;
+        }
+        return value;
     }
-    return value;
-  }
 }
