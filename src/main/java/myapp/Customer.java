@@ -16,7 +16,7 @@ public class Customer {
     String password;
     String cardNo;
     String securityNo;
-    int overallRating;
+    long overallRating;
     double wallet;
     
     String type = "customer";

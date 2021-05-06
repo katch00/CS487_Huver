@@ -41,6 +41,43 @@ function createDriverElement(driver) {
   return driverElement;
 }
 
+function getFavorites(username) {
+  fetch(`/getFavorites?username=${username}`).then(response => response.json()).then((favs) => {
+    const favListEl = document.getElementById('favList');
+    favs.forEach((fav) => {
+        favListEl.appendChild(createfavElement(fav));
+    })
+  });
+
+}
+
+function createfavElement(fav) {
+  const favElement = document.createElement('li');
+  favElement.className = 'favorite';
+
+  const nameElement = document.createElement('span');
+  nameElement.innerText = 'Address: ' + fav.address;
+
+  const cityElement = document.createElement('span');
+  cityElement.innerText = 'City: ' + fav.city;
+
+  const zipElement = document.createElement('span');
+  zipElement.innerText = 'Zip Code: ' + fav.zipCode;
+
+  const stateElement = document.createElement('span');
+  stateElement.innerText = 'State: ' + fav.state;
+
+  const breakEl = document.createElement('br');
+
+  favElement.appendChild(nameElement);
+  favElement.appendChild(breakEl);
+  favElement.appendChild(cityElement);
+  favElement.appendChild(breakEl);
+  favElement.appendChild(zipElement);
+  favElement.appendChild(breakEl);
+  favElement.appendChild(stateElement);
+  return favElement;
+
 function setRequest(cust, cost, time)
 {
     var customerLabel = document.getElementById('customer');
@@ -63,3 +100,4 @@ function createTime(min, max){
   console.log(time);
   return time;
 }
+ 
