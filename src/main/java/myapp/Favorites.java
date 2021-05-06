@@ -7,8 +7,6 @@ public class Favorites {
     String city;
     String zipCode;
     String state;
-    
-    String type = "favorite";
 
     public Favorites(String username, String address, String city, String zipCode, String state)
     {
