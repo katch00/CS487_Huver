@@ -78,7 +78,7 @@ public class RequestDriver extends HttpServlet {
 
         if(isAccepted.equals("true"))
         {
-            resp.sendRedirect("/index.html");
+            resp.sendRedirect("/DriveInProgress.html?user=cust");
         }
         else if(isAccepted.equals("rejected"))
         {

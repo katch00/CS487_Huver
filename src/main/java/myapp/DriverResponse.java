@@ -49,7 +49,7 @@ public class DriverResponse extends HttpServlet
             for (Entity entity : results.asIterable()) {
                 entity.setProperty("isAccepted", true1);
                 datastore.put(entity);
-                resp.sendRedirect("/login.html");
+                resp.sendRedirect("/DriveInProgress.html?user=driver");
             }
         }
         else
