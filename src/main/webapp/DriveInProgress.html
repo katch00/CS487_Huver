@@ -157,6 +157,21 @@
             }
             })
         }, 3000);
+
+        var myFunc = function() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const user = urlParams.get('user');
+            if(user == 'cust')
+            {
+                window.location.href = '/receiptPage.html';
+            }else {
+                window.location.href = '/RideComplete.html';
+            }
+        }
+        window.onload = function() {
+            setTimeout(myFunc, 10000);
+        }
     </script>
   </head>
   <body>
@@ -175,7 +190,7 @@
         <div id="info">
             <h2 class="Motto">"Uber, but <i>better</i>"</h2>
             <section class="whatwedo">
-                <h3 class="wtitle">Awaiting Customer!</h3>
+                <h3 class="wtitle">The ride is in progress!</h3>
             </section>
         </div>
         </div>

@@ -20,6 +20,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Random;
 
 import com.google.appengine.repackaged.com.google.protobuf.Timestamp;
 import com.google.appengine.api.datastore.DatastoreService;
@@ -47,6 +48,10 @@ public class AccountCreationServlet extends HttpServlet {
     
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
+    Random rand = new Random();
+    double money = Math.floor(rand.nextDouble() * 10000)/100;
+    System.out.println("Money: $" + money);
+
     if(user.equals("Customer")){
         Entity custEntity = new Entity("Customer");
 
@@ -66,6 +71,7 @@ public class AccountCreationServlet extends HttpServlet {
         custEntity.setProperty("cardNumber", cardNumber);
         custEntity.setProperty("securityNumber", securityNumber);
         custEntity.setProperty("overallRating",0);
+        custEntity.setProperty("money", money);
         datastore.put(custEntity);
     }
     else{
@@ -91,12 +97,13 @@ public class AccountCreationServlet extends HttpServlet {
         driverEntity.setProperty("overallRating",0);
         driverEntity.setProperty("isOnline","false");
         driverEntity.setProperty("isAvailable","false");
+        driverEntity.setProperty("money", money);
         datastore.put(driverEntity);
     }
 
     System.out.println("Account created.");
 
-    resp.sendRedirect("/index.html");
+    resp.sendRedirect("/successPage.html");
   }
 
   private String getParameter(HttpServletRequest request, String name, String defaultValue) {
